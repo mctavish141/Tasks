@@ -35,10 +35,34 @@ int divide (int a, int b) {
     return result;
 }
 
+int substract (int a, int b) {
+    int result;
+    
+    __asm__(
+            "mov %0,%%eax\n"
+            "sub %1,%%eax\n"
+            "mov %%eax,%2\n"
+            : "+r" (a), "+r" (b), "+m" (result));
+    
+    return result;
+}
+
+int sum (int a, int b) {
+    int result;
+    
+    __asm__(
+            "mov %0,%%eax\n"
+            "add %1,%%eax\n"
+            "mov %%eax,%2\n"
+            : "+r" (a), "+r" (b), "+m" (result));
+    
+    return result;
+}
+
 int main() {
     int a = 21;
     int b = 3;
-    int result = divide(a, b);
+    int result = sum(a, b);
     
     printf("Result: %d\n", result);
     
